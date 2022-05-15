@@ -1,0 +1,29 @@
+version: "3.7"
+# https://docs.docker.com/compose/compose-file/
+
+services:
+######
+# Zipkin setup
+######
+  zipkin:
+    image: openzipkin/zipkin
+    container_name: zipkin
+    environment:
+      - STORAGE_TYPE=mem
+      # - STORAGE_TYPE=mysql
+      # - MYSQL_DB = dbs
+      # - MYSQL_HOST=mysql_zip
+    # - JAVA_OPTS=-Dlogging.level.zipkin=DEBUG
+    ports:
+      - "9411:9411"
+#####
+# RabbitMQ setup
+#####
+  rabbitmq:
+    image: 'bitnami/rabbitmq:latest'
+    environment:
+      RABBITMQ_DEFAULT_USER: "admin"
+      RABBITMQ_DEFAULT_PASS: "admin"
+    ports:
+      - "5672:5672"
+      - "15672:15672"

@@ -1,0 +1,76 @@
+server:
+  port: 8081
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+
+spring:
+  application:
+    name: portal-service
+  profiles:
+    active: local
+  liquibase:
+    change-log: classpath:db-changelog.xml
+  zipkin:
+    base-url: 'http://localhost:9411'
+  sleuth:
+    sampler:
+      probability: 1
+    jdbc:
+      p6spy:
+        tracing:
+          include-parameter-values: true
+
+
+---
+spring:
+  datasource:
+    url: jdbc:h2:mem:testdb
+    driver-class-name: org.h2.Driver
+    username: admin
+    password: admin
+  jpa:
+    database: h2
+    database-platform: org.hibernate.dialect.H2Dialect
+    show_sql: true
+    generate-ddl: false
+    hibernate:
+      ddl-auto: none
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+      properties:
+        hibernate.cache.use_query_cache: false
+        hibernate.generate_statistics: true
+  h2:
+    console:
+      enabled: true
+  config:
+    activate:
+      on-profile: local
+
+---
+
+spring:
+  datasource:
+    url: jdbc:mariadb://localhost:3306/dating?useUnicode=yes&characterEncoding=UTF-8&serverTimezone=UTC
+    username: backend
+    password: password
+    driver-class-name: org.mariadb.jdbc.Driver
+  jpa:
+    database-platform: org.hibernate.dialect.MySQLInnoDBDialect
+    database: mariadb
+    openInView: false
+    show_sql: true
+    generate-ddl: false
+    hibernate:
+      ddl-auto: none
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+      properties:
+        hibernate.cache.use_query_cache: false
+        hibernate.generate_statistics: true
+  config:
+    activate:
+      on-profile: mariadb

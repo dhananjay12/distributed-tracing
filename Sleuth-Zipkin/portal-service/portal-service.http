@@ -1,0 +1,15 @@
+### Send POST request with json body
+POST http://localhost:8081/employee
+Content-Type: application/json
+
+{
+  "fname": "Max",
+  "lname": "Payne",
+  "email": "max@example.com",
+  "dob": "01-03-1980"
+}
+
+### GET request with a header
+GET http://localhost:8081/employee/1
+Accept: application/json
+
