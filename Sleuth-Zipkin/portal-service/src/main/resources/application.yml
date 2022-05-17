@@ -16,6 +16,11 @@ spring:
   zipkin:
     base-url: 'http://localhost:9411'
   sleuth:
+    baggage:
+      remote-fields: origin
+      correlation-fields: origin
+      tag-fields: "origin"
+      local-fields: "origin"
     sampler:
       probability: 1
     jdbc:

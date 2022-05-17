@@ -13,3 +13,19 @@ Content-Type: application/json
 GET http://localhost:8081/employee/1
 Accept: application/json
 
+### GET request
+GET http://localhost:8081/span/1
+
+### GET request
+GET http://localhost:8081/span/new-span/1
+
+### GET request
+GET http://localhost:8081/span/new-span-tag/1
+
+### GET request
+GET http://localhost:8081/baggage/1
+
+### GET request
+GET http://localhost:8081/baggage/headers
+
+
